@@ -1,0 +1,23 @@
+
+const express = require("express");
+const cors = require("cors");
+
+const connectDB = require("./config/db");
+const bookingRoutes = require("./routes/bookingRoutes");
+
+connectDB();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api", bookingRoutes);
+
+app.get("/", (req, res) => {
+    res.send("Hotel Backend Running");
+});
+
+app.listen(5000, () => {
+    console.log("Server running on port 5000");
+});
